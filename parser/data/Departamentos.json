@@ -1,0 +1,58 @@
+{
+    "Response": [
+        {
+            "nombre": "ASUNCIÓN"
+        },
+        {
+            "nombre": "CONCEPCION"
+        },
+        {
+            "nombre": "SAN PEDRO"
+        },
+        {
+            "nombre": "CORDILLERA"
+        },
+        {
+            "nombre": "GUAIRA"
+        },
+        {
+            "nombre": "CAAGUAZU"
+        },
+        {
+            "nombre": "CAAZAPA"
+        },
+        {
+            "nombre": "ITAPUA"
+        },
+        {
+            "nombre": "MISIONES"
+        },
+        {
+            "nombre": "PARAGUARI"
+        },
+        {
+            "nombre": "ALTO PARANA"
+        },
+        {
+            "nombre": "CENTRAL"
+        },
+        {
+            "nombre": "ÑEEMBUCU"
+        },
+        {
+            "nombre": "AMAMBAY"
+        },
+        {
+            "nombre": "CANINDEYU"
+        },
+        {
+            "nombre": "PRESIDENTE HAYES"
+        },
+        {
+            "nombre": "ALTO PARAGUAY"
+        },
+        {
+            "nombre": "BOQUERÓN"
+        }
+    ]
+}

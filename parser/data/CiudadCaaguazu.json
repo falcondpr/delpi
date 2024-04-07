@@ -1,0 +1,158 @@
+{
+    "error": false,
+    "resultado": {},
+    "mensaje": "Exitoso.",
+    "errorValList": [],
+    "respuesta": {
+        "pagina": null,
+        "totalPaginas": null,
+        "totalDatos": null,
+        "datos": [
+            {
+                "nombre": "3 de Febrero",
+                "observacion": null,
+                "idCiudad": 42543,
+                "activo": "S"
+            },
+            {
+                "nombre": "Caaguazú",
+                "observacion": null,
+                "idCiudad": 42546,
+                "activo": "S"
+            },
+            {
+                "nombre": "Carayaó",
+                "observacion": null,
+                "idCiudad": 42536,
+                "activo": "S"
+            },
+            {
+                "nombre": "Coronel Oviedo",
+                "observacion": null,
+                "idCiudad": 42531,
+                "activo": "S"
+            },
+            {
+                "nombre": "Dr. Cecilio Báez",
+                "observacion": null,
+                "idCiudad": 42539,
+                "activo": "S"
+            },
+            {
+                "nombre": "Dr. Juan Eulogio Estigarribia",
+                "observacion": null,
+                "idCiudad": 42547,
+                "activo": "S"
+            },
+            {
+                "nombre": "Dr. Juan Manuel Frutos",
+                "observacion": null,
+                "idCiudad": 42545,
+                "activo": "S"
+            },
+            {
+                "nombre": "José Domingo Ocampos",
+                "observacion": null,
+                "idCiudad": 42548,
+                "activo": "S"
+            },
+            {
+                "nombre": "La Pastora",
+                "observacion": null,
+                "idCiudad": 42534,
+                "activo": "S"
+            },
+            {
+                "nombre": "Nueva Londres",
+                "observacion": null,
+                "idCiudad": 42535,
+                "activo": "S"
+            },
+            {
+                "nombre": "Nueva Toledo",
+                "observacion": null,
+                "idCiudad": 42550,
+                "activo": "S"
+            },
+            {
+                "nombre": "Raúl Arsenio Oviedo",
+                "observacion": null,
+                "idCiudad": 42549,
+                "activo": "S"
+            },
+            {
+                "nombre": "Repatriación",
+                "observacion": null,
+                "idCiudad": 42544,
+                "activo": "S"
+            },
+            {
+                "nombre": "R. I. Tres Corrales",
+                "observacion": null,
+                "idCiudad": 42533,
+                "activo": "S"
+            },
+            {
+                "nombre": "San Joaquín",
+                "observacion": null,
+                "idCiudad": 42542,
+                "activo": "S"
+            },
+            {
+                "nombre": "San José de los Arroyos",
+                "observacion": null,
+                "idCiudad": 42532,
+                "activo": "S"
+            },
+            {
+                "nombre": "Santa Rosa del Mbutuy",
+                "observacion": null,
+                "idCiudad": 42619,
+                "activo": "S"
+            },
+            {
+                "nombre": "Santa Teresa - Mcal. López",
+                "observacion": null,
+                "idCiudad": 42551,
+                "activo": "S"
+            },
+            {
+                "nombre": "Santo Domingo",
+                "observacion": null,
+                "idCiudad": 42592,
+                "activo": "S"
+            },
+            {
+                "nombre": "Simón Bolívar",
+                "observacion": null,
+                "idCiudad": 42537,
+                "activo": "S"
+            },
+            {
+                "nombre": "Tembiaporá",
+                "observacion": null,
+                "idCiudad": 42552,
+                "activo": "S"
+            },
+            {
+                "nombre": "Vaquería",
+                "observacion": null,
+                "idCiudad": 42540,
+                "activo": "S"
+            },
+            {
+                "nombre": "Yhú",
+                "observacion": null,
+                "idCiudad": 42541,
+                "activo": "S"
+            },
+            {
+                "nombre": "Mbutuy",
+                "observacion": null,
+                "idCiudad": 42538,
+                "activo": "N"
+            }
+        ]
+    },
+    "mensajeList": []
+}

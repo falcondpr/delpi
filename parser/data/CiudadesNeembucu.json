@@ -1,0 +1,55 @@
+{
+    "Response": [
+        {
+            "nombre": "Alberdi"
+        },
+        {
+            "nombre": "Cerrito"
+        },
+        {
+            "nombre": "Desmochados"
+        },
+        {
+            "nombre": "Gral. Díaz"
+        },
+        {
+            "nombre": "Guazú Cuá"
+        },
+        {
+            "nombre": "Humaitá"
+        },
+        {
+            "nombre": "Isla Umbú"
+        },
+        {
+            "nombre": "Laureles"
+        },
+        {
+            "nombre": "Mayor Martínez"
+        },
+        {
+            "nombre": "Paso de Patria"
+        },
+        {
+            "nombre": "Pilar"
+        },
+        {
+            "nombre": "San Juan Bautista del Ñeembucu"
+        },
+        {
+            "nombre": "San Juan Ñeembucú"
+        },
+        {
+            "nombre": "Tacuaras"
+        },
+        {
+            "nombre": "Villa Franca"
+        },
+        {
+            "nombre": "Villalbín"
+        },
+        {
+            "nombre": "Villa Oliva"
+        }
+    ]
+}
