@@ -1,17 +1,36 @@
-import { useRef } from "react";
 import ReactJson from "react-json-view";
+import toast from "react-hot-toast";
 import useSWR from "swr";
 import { HiClipboard } from "react-icons/hi2";
 
 import Layout from "../components/Layout";
 import axios from "../config/axios";
+import { ENDPOINT_API } from "../shared/constants";
 
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
 export default function Cities() {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const { data: cities } = useSWR("/api/ciudades", fetchData);
 
-  const { data: departaments } = useSWR("/departamentos", fetchData);
+  const handleCopyUrlCompany = async () => {
+    const textElement = document.getElementById("urlEndpoint");
+
+    if (textElement) {
+      const text = textElement.textContent;
+      if (text) {
+        await navigator.clipboard.writeText(text);
+        toast("Enlace copiado", {
+          icon: "📋",
+        });
+      } else {
+        console.error("El contenido de texto está vacío.");
+      }
+    } else {
+      console.error(
+        "No se encontró el elemento con el ID 'urlCompany'."
+      );
+    }
+  };
 
   return (
     <Layout>
@@ -32,23 +51,26 @@ export default function Cities() {
             <div
               role="button"
               className="absolute top-1/2 -translate-y-1/2 left-5"
-              onClick={() => inputRef.current?.focus()}
             >
-              <p className="text-lg text-neutral-500">
-                https://delpi.com/api/v2/departamentos/
+              <p
+                className="text-lg text-neutral-500"
+                id="urlEndpoint"
+              >
+                {ENDPOINT_API}/api/ciudades
               </p>
             </div>
 
-            <button className="h-auto rounded-sm ring-1 absolute right-[106px] p-2 top-1/2 -translate-y-1/2 ring-neutral-600 text-white">
+            <button
+              type="button"
+              className="h-auto rounded-sm ring-1 absolute right-5 p-2 top-1/2 -translate-y-1/2 ring-neutral-600 text-white"
+              onClick={handleCopyUrlCompany}
+            >
               <HiClipboard className="text-neutral-300 text-2xl" />
             </button>
 
-            <button className="rounded-tr-lg rounded-br-lg h-16 absolute right-0 px-5 text-white">
-              Consultar
-            </button>
-
             <input
-              ref={inputRef}
+              id="department"
+              disabled
               type="text"
               className="text-lg text-white bg-[#101010] h-16 rounded-lg w-full pl-[388px]"
             />
@@ -56,7 +78,7 @@ export default function Cities() {
         </div>
 
         <div className="overflow-y-scroll h-auto p-5 bg-[#101010] mt-5 rounded-md">
-          <ReactJson theme={"grayscale"} src={departaments || []} />
+          <ReactJson theme={"grayscale"} src={cities || []} />
         </div>
       </div>
     </Layout>

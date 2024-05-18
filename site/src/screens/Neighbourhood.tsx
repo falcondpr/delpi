@@ -1,17 +1,16 @@
 import { useRef } from "react";
 import ReactJson from "react-json-view";
-import useSWR from "swr";
+// import useSWR from "swr";
 import { HiClipboard } from "react-icons/hi2";
 
 import Layout from "../components/Layout";
-import axios from "../config/axios";
+// import axios from "../config/axios";
+import { ENDPOINT_API } from "../shared/constants";
 
-const fetchData = async (url: string) => (await axios.get(url)).data;
+// const fetchData = async (url: string) => (await axios.get(url)).data;
 
 export default function Neighbourhood() {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const { data: departaments } = useSWR("/departamentos", fetchData);
 
   return (
     <Layout>
@@ -35,7 +34,7 @@ export default function Neighbourhood() {
               onClick={() => inputRef.current?.focus()}
             >
               <p className="text-lg text-neutral-500">
-                https://delpi.com/api/v2/departamentos/
+                {ENDPOINT_API}/api/barrios
               </p>
             </div>
 
@@ -56,7 +55,7 @@ export default function Neighbourhood() {
         </div>
 
         <div className="overflow-y-scroll h-auto p-5 bg-[#101010] mt-5 rounded-md">
-          <ReactJson theme={"grayscale"} src={departaments || []} />
+          <ReactJson theme={"grayscale"} src={[]} />
         </div>
       </div>
     </Layout>

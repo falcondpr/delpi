@@ -1,10 +1,12 @@
 import { useState } from "react";
 import ReactJson from "react-json-view";
+import toast from "react-hot-toast";
 import useSWR from "swr";
 import { HiClipboard } from "react-icons/hi2";
 
 import Layout from "../components/Layout";
 import axios from "../config/axios";
+import { ENDPOINT_API } from "../shared/constants";
 
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
@@ -13,14 +15,32 @@ export default function Departments() {
     useState<string>("");
 
   const { data: departaments } = useSWR(
-    departmentSelected === ""
-      ? "/departamentos"
-      : `/departamentos/${departmentSelected}`,
+    "/api/departamentos",
     fetchData
   );
 
   const handleFocus = () =>
     document.getElementById("department")?.focus();
+
+  const handleCopyUrlCompany = async () => {
+    const textElement = document.getElementById("urlEndpoint");
+
+    if (textElement) {
+      const text = textElement.textContent;
+      if (text) {
+        await navigator.clipboard.writeText(text);
+        toast("Enlace copiado", {
+          icon: "📋",
+        });
+      } else {
+        console.error("El contenido de texto está vacío.");
+      }
+    } else {
+      console.error(
+        "No se encontró el elemento con el ID 'urlCompany'."
+      );
+    }
+  };
 
   return (
     <Layout>
@@ -43,17 +63,25 @@ export default function Departments() {
               className="absolute top-1/2 -translate-y-1/2 left-5"
               onClick={handleFocus}
             >
-              <p className="text-lg text-neutral-500">
-                https://delpi.com/api/v2/departamentos/
+              <p
+                className="text-lg text-neutral-500"
+                id="urlEndpoint"
+              >
+                {ENDPOINT_API}/api/departamentos
               </p>
             </div>
 
-            <button className="h-auto rounded-sm ring-1 absolute right-5 p-2 top-1/2 -translate-y-1/2 ring-neutral-600 text-white">
+            <button
+              type="button"
+              className="h-auto rounded-sm ring-1 absolute right-5 p-2 top-1/2 -translate-y-1/2 ring-neutral-600 text-white"
+              onClick={handleCopyUrlCompany}
+            >
               <HiClipboard className="text-neutral-300 text-2xl" />
             </button>
 
             <input
               id="department"
+              disabled
               type="text"
               className="text-lg text-white bg-[#101010] h-16 rounded-lg w-full pl-[388px]"
               value={departmentSelected}
