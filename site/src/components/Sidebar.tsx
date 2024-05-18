@@ -30,10 +30,10 @@ export default function Sidebar() {
         <Link
           to="/"
           className={clsx(
-            "text-white",
+            "",
             pathname === "/"
               ? "font-semibold text-orange-400"
-              : "text-neutral-400/80"
+              : "text-neutral-300"
           )}
         >
           Inicio
@@ -46,10 +46,10 @@ export default function Sidebar() {
             key={route.name}
             to={route.route}
             className={clsx(
-              "text-white",
+              "",
               pathname === route.route
                 ? "font-semibold text-orange-400"
-                : "text-neutral-400/80"
+                : "text-neutral-300"
             )}
           >
             {route.name}
