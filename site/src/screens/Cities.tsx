@@ -10,9 +10,12 @@ import { useState } from "react";
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
 export default function Cities() {
-  const { data: cities } = useSWR("/api/ciudades", fetchData);
+  const [departmentId, setDepartmentId] = useState<string>("1");
 
-  const [departmentId, setDepartmentId] = useState<string>("");
+  const { data: cities } = useSWR(
+    `/api/ciudades/${departmentId}`,
+    departmentId ? fetchData : null
+  );
 
   const handleCopyUrlCompany = async () => {
     const textElement = document.getElementById("urlEndpoint");
