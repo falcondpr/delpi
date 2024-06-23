@@ -1,7 +1,7 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import ReactJson from "react-json-view";
 
+import {handleCopyUrlCompany} from "../utils/handleCapyUrlCompany.ts";
 import Layout from "../components/Layout";
 import Search from "../components/Search";
 import useSWR from "swr";
@@ -11,32 +11,12 @@ import { INeighbourhood } from "../interface/neighbourhood";
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
 export default function Neighbourhood() {
-  const [cityId, setCityId] = useState<string>("");
+  const [cityId, setCityId] = useState<string>("1");
 
   const { data: barrios } = useSWR<INeighbourhood[]>(
-    `/api/barrios/1`,
-    fetchData
+    `/api/barrios/${cityId}`,
+    cityId ? fetchData: null
   );
-
-  const handleCopyUrlCompany = async () => {
-    const textElement = document.getElementById("urlEndpoint");
-
-    if (textElement) {
-      const text = textElement.textContent;
-      if (text) {
-        await navigator.clipboard.writeText(text);
-        toast("Enlace copiado", {
-          icon: "📋",
-        });
-      } else {
-        console.error("El contenido de texto está vacío.");
-      }
-    } else {
-      console.error(
-        "No se encontró el elemento con el ID 'urlCompany'."
-      );
-    }
-  };
 
   const handleSearch = () => {};
 
