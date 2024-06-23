@@ -17,6 +17,13 @@ const other_routes = [
   },
 ];
 
+const another_section = [
+  {
+    name: "Demo",
+    route: "/demo",
+  },
+];
+
 export default function Sidebar() {
   const { pathname } = useLocation();
 
@@ -41,20 +48,41 @@ export default function Sidebar() {
 
         <div className="w-full h-[1px] bg-neutral-700"></div>
 
-        {other_routes.map((route) => (
-          <Link
-            key={route.name}
-            to={route.route}
-            className={clsx(
-              "",
-              pathname === route.route
-                ? "font-semibold text-orange-400"
-                : "text-neutral-300"
-            )}
-          >
-            {route.name}
-          </Link>
-        ))}
+        <div className="flex flex-col space-y-3">
+          {other_routes.map((route) => (
+            <Link
+              key={route.name}
+              to={route.route}
+              className={clsx(
+                "",
+                pathname === route.route
+                  ? "font-semibold text-orange-400"
+                  : "text-neutral-300"
+              )}
+            >
+              {route.name}
+            </Link>
+          ))}
+        </div>
+
+        <div className="w-full h-[1px] bg-neutral-700"></div>
+
+        <div className="flex flex-col space-y-3">
+          {another_section.map((route) => (
+            <Link
+              key={route.name}
+              to={route.route}
+              className={clsx(
+                "",
+                pathname === route.route
+                  ? "font-semibold text-orange-400"
+                  : "text-neutral-300"
+              )}
+            >
+              {route.name}
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="p-5 absolute bottom-0 left-0">

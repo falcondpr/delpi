@@ -4,6 +4,7 @@ import Departments from "../screens/Departments";
 import Home from "../screens/Home";
 import Cities from "../screens/Cities";
 import Neighbourhood from "../screens/Neighbourhood";
+import Demo from "../screens/Demo";
 
 export default function RouteApp() {
   return (
@@ -13,6 +14,7 @@ export default function RouteApp() {
         <Route path="/departamentos" element={<Departments />} />
         <Route path="/ciudades" element={<Cities />} />
         <Route path="/barrios" element={<Neighbourhood />} />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
     </BrowserRouter>
   );
