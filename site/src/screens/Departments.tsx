@@ -1,26 +1,18 @@
-import { useState } from "react";
+import useSWR from "swr";
 import ReactJson from "react-json-view";
 import toast from "react-hot-toast";
-import useSWR from "swr";
-import { HiClipboard } from "react-icons/hi2";
 
 import Layout from "../components/Layout";
 import axios from "../config/axios";
-import { ENDPOINT_API } from "../shared/constants";
+import Search from "../components/Search";
 
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
 export default function Departments() {
-  const [departmentSelected, setDepartmentSelected] =
-    useState<string>("");
-
   const { data: departaments } = useSWR(
     "/api/departamentos",
     fetchData
   );
-
-  const handleFocus = () =>
-    document.getElementById("department")?.focus();
 
   const handleCopyUrlCompany = async () => {
     const textElement = document.getElementById("urlEndpoint");
@@ -42,6 +34,8 @@ export default function Departments() {
     }
   };
 
+  const handleSearch = () => {};
+
   return (
     <Layout>
       <form className="p-5 h-[calc(100dvh_-_64px)] flex flex-col">
@@ -57,42 +51,16 @@ export default function Departments() {
             desplegable o selección de ubicación.
           </p>
 
-          <div className="relative mt-5">
-            <div
-              role="button"
-              className="absolute top-1/2 -translate-y-1/2 left-5"
-              onClick={handleFocus}
-            >
-              <p
-                className="text-lg text-neutral-500"
-                id="urlEndpoint"
-              >
-                {ENDPOINT_API}/api/departamentos
-              </p>
-            </div>
-
-            <button
-              type="button"
-              className="h-auto rounded-sm ring-1 absolute right-5 p-2 top-1/2 -translate-y-1/2 ring-neutral-600 text-white"
-              onClick={handleCopyUrlCompany}
-            >
-              <HiClipboard className="text-neutral-300 text-2xl" />
-            </button>
-
-            <input
-              id="department"
-              disabled
-              type="text"
-              className="text-lg text-white bg-[#101010] h-16 rounded-lg w-full pl-[388px]"
-              value={departmentSelected}
-              onChange={(e) => setDepartmentSelected(e.target.value)}
-            />
-          </div>
+          <Search
+            text="/api/departamentos"
+            handleCopy={handleCopyUrlCompany}
+            handleSearch={handleSearch}
+          />
         </div>
 
         <div className="overflow-y-scroll h-auto p-5 bg-[#101010] mt-5 rounded-md">
           <ReactJson
-            theme={"grayscale"}
+            theme="grayscale"
             src={
               departaments || {
                 status: 404,

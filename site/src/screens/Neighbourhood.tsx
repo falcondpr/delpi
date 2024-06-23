@@ -1,16 +1,34 @@
-import { useRef } from "react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import ReactJson from "react-json-view";
-// import useSWR from "swr";
-import { HiClipboard } from "react-icons/hi2";
 
 import Layout from "../components/Layout";
-// import axios from "../config/axios";
-import { ENDPOINT_API } from "../shared/constants";
-
-// const fetchData = async (url: string) => (await axios.get(url)).data;
+import Search from "../components/Search";
 
 export default function Neighbourhood() {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [cityId, setCityId] = useState<string>("");
+
+  const handleCopyUrlCompany = async () => {
+    const textElement = document.getElementById("urlEndpoint");
+
+    if (textElement) {
+      const text = textElement.textContent;
+      if (text) {
+        await navigator.clipboard.writeText(text);
+        toast("Enlace copiado", {
+          icon: "📋",
+        });
+      } else {
+        console.error("El contenido de texto está vacío.");
+      }
+    } else {
+      console.error(
+        "No se encontró el elemento con el ID 'urlCompany'."
+      );
+    }
+  };
+
+  const handleSearch = () => {};
 
   return (
     <Layout>
@@ -27,31 +45,14 @@ export default function Neighbourhood() {
             desplegable o selección de ubicación.
           </p>
 
-          <div className="relative mt-5">
-            <div
-              role="button"
-              className="absolute top-1/2 -translate-y-1/2 left-5"
-              onClick={() => inputRef.current?.focus()}
-            >
-              <p className="text-lg text-neutral-500">
-                {ENDPOINT_API}/api/barrios
-              </p>
-            </div>
-
-            <button className="h-auto rounded-sm ring-1 absolute right-[106px] p-2 top-1/2 -translate-y-1/2 ring-neutral-600 text-white">
-              <HiClipboard className="text-neutral-300 text-2xl" />
-            </button>
-
-            <button className="rounded-tr-lg rounded-br-lg h-16 absolute right-0 px-5 text-white">
-              Consultar
-            </button>
-
-            <input
-              ref={inputRef}
-              type="text"
-              className="text-lg text-white bg-[#101010] h-16 rounded-lg w-full pl-[388px]"
-            />
-          </div>
+          <Search
+            handleCopy={handleCopyUrlCompany}
+            handleSearch={handleSearch}
+            text="/api/barrios/"
+            placeholder="ciudadId"
+            inputValue={cityId}
+            handleChangeInputValue={(value) => setCityId(value)}
+          />
         </div>
 
         <div className="overflow-y-scroll h-auto p-5 bg-[#101010] mt-5 rounded-md">

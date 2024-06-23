@@ -11,22 +11,22 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="flex">
-      <Sidebar />
-      <div className="min-h-[100dvh] bg-neutral-900 w-full">
-        <Header />
-        <div className="flex gap-x-5">
-          <div className="flex-1">{children}</div>
-          {/* {pathname === "/" ? null : (
-            <aside className="mt-5 p-7 w-[370px] border-l border-neutral-700">
-              <p className="text-white">
-                Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. A laborum est possimus, labore quam cum. Non id
-                ea assumenda animi.
-              </p>
-            </aside>
-          )} */}
+      <div className="lg:w-[300px] bg-[#101010]"></div>
+
+      <div className="flex flex-1">
+        <div>
+          <Sidebar />
+        </div>
+        <div className="min-h-[100dvh] bg-neutral-900 w-full">
+          <Header />
+          <div className="flex gap-x-5">
+            <div className="flex-1">{children}</div>
+          </div>
         </div>
       </div>
+
+      <div className="lg:w-[300px] bg-neutral-900 border-l border-l-neutral-800"></div>
+      <div className="lg:w-[300px] bg-neutral-900"></div>
     </div>
   );
 }
