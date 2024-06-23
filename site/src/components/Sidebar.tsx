@@ -86,7 +86,13 @@ export default function Sidebar() {
       </div>
 
       <div className="p-5 absolute bottom-0 left-0">
-        <FaGithub className="text-3xl text-white" />
+        <a
+          href="https://github.com/fervillalbag/delpi"
+          target="_blank"
+          className=""
+        >
+          <FaGithub className="text-3xl text-white" />
+        </a>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ export default function Cities() {
             handleCopy={handleCopyUrlCompany}
             handleSearch={handleSearch}
             text="/api/ciudades/"
-            placeholder="departamentoId"
+            placeholder="id"
             inputValue={departmentId}
             handleChangeInputValue={(value) => setDepartmentId(value)}
           />

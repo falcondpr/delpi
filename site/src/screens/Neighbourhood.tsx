@@ -4,9 +4,19 @@ import ReactJson from "react-json-view";
 
 import Layout from "../components/Layout";
 import Search from "../components/Search";
+import useSWR from "swr";
+import axios from "../config/axios";
+import { INeighbourhood } from "../interface/neighbourhood";
+
+const fetchData = async (url: string) => (await axios.get(url)).data;
 
 export default function Neighbourhood() {
   const [cityId, setCityId] = useState<string>("");
+
+  const { data: barrios } = useSWR<INeighbourhood[]>(
+    `/api/barrios/1`,
+    fetchData
+  );
 
   const handleCopyUrlCompany = async () => {
     const textElement = document.getElementById("urlEndpoint");
@@ -49,14 +59,14 @@ export default function Neighbourhood() {
             handleCopy={handleCopyUrlCompany}
             handleSearch={handleSearch}
             text="/api/barrios/"
-            placeholder="ciudadId"
+            placeholder="id"
             inputValue={cityId}
             handleChangeInputValue={(value) => setCityId(value)}
           />
         </div>
 
         <div className="overflow-y-scroll h-auto p-5 bg-[#101010] mt-5 rounded-md">
-          <ReactJson theme={"grayscale"} src={[]} />
+          <ReactJson theme={"grayscale"} src={barrios ?? []} />
         </div>
       </div>
     </Layout>
