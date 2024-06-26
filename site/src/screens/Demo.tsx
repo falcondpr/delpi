@@ -84,7 +84,11 @@ const Demo: React.FC = () => {
           <div className="w-52">
             <Combobox
               value={selectedDepartment}
-              onChange={(value) => setSelectedDepartment(value)}
+              onChange={(value) => {
+                setSelectedDepartment(value);
+                setSelectedNeightbourhood(null);
+                setSelectedCity(null);
+              }}
               onClose={() => setQueryDepartment("")}
             >
               <div className="relative">
@@ -137,7 +141,10 @@ const Demo: React.FC = () => {
           <div className="w-52 relative">
             <Combobox
               value={selectedCity}
-              onChange={(value) => setSelectedCity(value)}
+              onChange={(value) => {
+                setSelectedCity(value);
+                setSelectedNeightbourhood(null);
+              }}
               onClose={() => setQueryCity("")}
             >
               <div
