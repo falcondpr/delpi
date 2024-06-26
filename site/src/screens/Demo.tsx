@@ -15,8 +15,15 @@ import {
 
 import Layout from "../components/Layout";
 import axios from "../config/axios";
-import { IDepartament } from "../interface/department";
-import { ICity } from "../interface/city";
+import {
+  IDataDepartment,
+  IDepartament,
+} from "../interface/department";
+import { ICity, ICityData } from "../interface/city";
+import {
+  INeighbourhood,
+  INeighbourhoodData,
+} from "../interface/neighbourhood";
 
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
@@ -25,30 +32,44 @@ const Demo: React.FC = () => {
   const [queryCity, setQueryCity] = useState("");
 
   const [selectedDepartment, setSelectedDepartment] =
-    useState<IDepartament | null>(null);
-  const [selectedCity, setSelectedCity] = useState<ICity | null>(
+    useState<IDataDepartment | null>(null);
+  const [selectedCity, setSelectedCity] = useState<ICityData | null>(
     null
   );
+  const [selectedNeightbourhood, setSelectedNeightbourhood] =
+    useState<ICityData | null>(null);
 
-  const { data: departaments } = useSWR<IDepartament[]>(
+  const { data: departaments } = useSWR<IDepartament>(
     "/api/departamentos",
     fetchData
   );
 
-  const { data: cities } = useSWR<ICity[]>(
+  const { data: cities } = useSWR<ICity>(
     `/api/ciudades/${selectedDepartment?.id}`,
     selectedDepartment?.id ? fetchData : null
   );
 
-  const departmentsFiltered = departaments?.filter(
-    (department: IDepartament) =>
-      department.nombre
-        .toLowerCase()
-        .includes(queryDepartment.toLowerCase())
+  const { data: neightbourhoods } = useSWR<INeighbourhood>(
+    `/api/barrios/${selectedCity?.id}`,
+    selectedCity?.id ? fetchData : null
   );
 
-  const citiesFiltered = cities?.filter((department) =>
-    department.nombre.toLowerCase().includes(queryCity.toLowerCase())
+  const departmentsFiltered = departaments?.data?.filter(
+    (department) =>
+      department?.nombre
+        ?.toLowerCase()
+        ?.includes(queryDepartment?.toLowerCase())
+  );
+
+  const citiesFiltered = cities?.data?.filter((department) =>
+    department?.nombre
+      ?.toLowerCase()
+      ?.includes(queryCity.toLowerCase())
+  );
+
+  const neightbourhoodsFiltered = neightbourhoods?.data?.filter(
+    (nei) =>
+      nei?.nombre?.toLowerCase()?.includes(queryCity.toLowerCase())
   );
 
   return (
@@ -72,7 +93,7 @@ const Demo: React.FC = () => {
                     "w-full rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white",
                     "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                   )}
-                  displayValue={(department: IDepartament) =>
+                  displayValue={(department: IDataDepartment) =>
                     department?.nombre ?? "Seleccione"
                   }
                   onChange={(event) =>
@@ -133,7 +154,7 @@ const Demo: React.FC = () => {
                     "w-full rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white",
                     "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                   )}
-                  displayValue={(city: ICity) =>
+                  displayValue={(city: ICityData) =>
                     city?.nombre ?? "Seleccione"
                   }
                   onChange={(event) =>
@@ -162,6 +183,67 @@ const Demo: React.FC = () => {
                     <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
                     <div className="text-sm/6 text-white">
                       {city.nombre}
+                    </div>
+                  </ComboboxOption>
+                ))}
+              </ComboboxOptions>
+            </Combobox>
+          </div>
+        </div>
+
+        <div className="mt-5">
+          <h4 className="mb-3 text-lg text-neutral-300 font-semibold">
+            Selecciona un barrio:
+          </h4>
+          <div className="w-52 relative">
+            <Combobox
+              value={selectedNeightbourhood}
+              onChange={(value) => setSelectedNeightbourhood(value)}
+              onClose={() => setQueryCity("")}
+            >
+              <div
+                className="relative"
+                style={
+                  !selectedDepartment
+                    ? { opacity: 0.5 }
+                    : { opacity: 1 }
+                }
+              >
+                <ComboboxInput
+                  disabled={!selectedCity}
+                  className={clsx(
+                    "w-full rounded-lg border-none bg-white/5 py-1.5 pr-8 pl-3 text-sm/6 text-white",
+                    "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                  )}
+                  displayValue={(city: INeighbourhoodData) =>
+                    city?.nombre ?? "Seleccione"
+                  }
+                  onChange={(event) =>
+                    setQueryCity(event.target.value)
+                  }
+                />
+                <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
+                  <ChevronDownIcon className="size-4 fill-white/60 group-data-[hover]:fill-white" />
+                </ComboboxButton>
+              </div>
+
+              <ComboboxOptions
+                anchor="bottom"
+                transition
+                className={clsx(
+                  "w-[var(--input-width)] rounded-xl border border-white/5 bg-neutral-900 p-1 [--anchor-gap:var(--spacing-1)] empty:invisible",
+                  "transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0"
+                )}
+              >
+                {neightbourhoodsFiltered?.map((nei) => (
+                  <ComboboxOption
+                    key={nei.id}
+                    value={nei}
+                    className="group flex cursor-default items-center gap-2 rounded-lg py-1.5 px-3 select-none data-[focus]:bg-white/10"
+                  >
+                    <CheckIcon className="invisible size-4 fill-white group-data-[selected]:visible" />
+                    <div className="text-sm/6 text-white">
+                      {nei.nombre}
                     </div>
                   </ComboboxOption>
                 ))}

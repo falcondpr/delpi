@@ -19,6 +19,15 @@ interface Ciudad {
 }
 
 export interface INeighbourhood {
+  data: INeighbourhoodData[];
+  limit: number;
+  elements: number;
+  page: number;
+  sort: string;
+  total_pages: number;
+}
+
+export interface INeighbourhoodData {
   id: number;
   nombre: string;
   ciudad: Ciudad;
