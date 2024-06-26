@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactJson from "react-json-view";
 
-import {handleCopyUrlCompany} from "../utils/handleCapyUrlCompany.ts";
+import { handleCopyUrlCompany } from "../utils/handleCapyUrlCompany.ts";
 import Layout from "../components/Layout";
 import Search from "../components/Search";
 import useSWR from "swr";
@@ -15,10 +15,8 @@ export default function Neighbourhood() {
 
   const { data: barrios } = useSWR<INeighbourhood[]>(
     `/api/barrios/${cityId}`,
-    cityId ? fetchData: null
+    cityId ? fetchData : null
   );
-
-  const handleSearch = () => {};
 
   return (
     <Layout>
@@ -37,7 +35,6 @@ export default function Neighbourhood() {
 
           <Search
             handleCopy={handleCopyUrlCompany}
-            handleSearch={handleSearch}
             text="/api/barrios/"
             placeholder="id"
             inputValue={cityId}

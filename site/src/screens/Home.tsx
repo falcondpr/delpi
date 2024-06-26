@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="p-5">
-        <h1 className="text-white text-xl">Delpi</h1>
+        <h1 className="text-white text-3xl font-bold">Delpi API</h1>
 
         <p className="text-gray-300 mt-3">
           En la era de los servicios digitales y las aplicaciones, la

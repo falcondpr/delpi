@@ -1,10 +1,9 @@
-import { Clipboard, SendHorizonal } from "lucide-react";
+import { Clipboard } from "lucide-react";
 import { ENDPOINT_API } from "../shared/constants";
 
 interface SearchProps {
   text: string;
   handleCopy: () => void;
-  handleSearch: () => void;
   placeholder?: string;
   inputValue?: string;
   handleChangeInputValue?: (value: string) => void;
@@ -12,7 +11,6 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({
   handleCopy,
-  handleSearch,
   text,
   inputValue,
   placeholder,
@@ -24,7 +22,7 @@ const Search: React.FC<SearchProps> = ({
         <div className="flex items-center w-full">
           <div>
             <p
-              className="text-lg text-neutral-500 pl-5"
+              className="w-48 md:w-64 lg:w-auto overflow-hidden whitespace-nowrap text-ellipsis text-lg text-neutral-500 pl-5"
               id="urlEndpoint"
             >
               {ENDPOINT_API}
@@ -36,12 +34,13 @@ const Search: React.FC<SearchProps> = ({
           handleChangeInputValue ? (
             <div className="h-12 flex-1 ml-2">
               <input
+                type="number"
                 value={inputValue}
                 placeholder={placeholder}
                 onChange={(e) =>
                   handleChangeInputValue(e.target.value)
                 }
-                className="h-full rounded-xl bg-neutral-950 outline-none placeholder:text-white text-white w-16 text-center"
+                className="appearance-none h-full rounded-xl bg-neutral-950 outline-none placeholder:text-white text-white w-16 text-center"
               />
             </div>
           ) : null}
@@ -55,15 +54,6 @@ const Search: React.FC<SearchProps> = ({
           >
             <Clipboard className="text-neutral-300 text-2xl" />
           </button>
-          {typeof inputValue === "string" && (
-            <button
-              type="button"
-              className="h-auto rounded-sm ring-1 p-2 ring-neutral-600 text-white"
-              onClick={handleSearch}
-            >
-              <SendHorizonal className="text-neutral-300 text-2xl" />
-            </button>
-          )}
         </div>
       </div>
     </div>
