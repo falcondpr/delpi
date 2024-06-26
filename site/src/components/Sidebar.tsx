@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaTimes } from "react-icons/fa";
 import clsx from "clsx";
 
 const other_routes = [
@@ -24,13 +24,28 @@ const another_section = [
   },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  setShowSidebar: (value: boolean) => void;
+  showSidebar: boolean;
+}
+
+export default function Sidebar({
+  setShowSidebar,
+  showSidebar,
+}: SidebarProps) {
   const { pathname } = useLocation();
 
   return (
-    <div className="w-72 bg-[#101010] h-[100dvh] relative">
-      <header className="px-5 h-16 flex items-center border-b border-b-neutral-800">
+    <div className="w-full lg:w-72 bg-[#101010] h-[100dvh] relative">
+      <header className="justify-between px-5 h-16 flex items-center border-b border-b-neutral-800">
         <h1 className="text-white text-xl font-bold">Delpi</h1>
+
+        <button
+          className="p-2 lg:hidden"
+          onClick={() => setShowSidebar(!showSidebar)}
+        >
+          <FaTimes className="text-white text-2xl" />
+        </button>
       </header>
 
       <div className="flex flex-col space-y-3 mt-5 px-5">

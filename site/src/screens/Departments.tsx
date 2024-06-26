@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import ReactJson from "react-json-view";
 
-import {handleCopyUrlCompany} from "../utils/handleCapyUrlCompany.ts";
+import { handleCopyUrlCompany } from "../utils/handleCapyUrlCompany.ts";
 import Layout from "../components/Layout";
 import axios from "../config/axios";
 import Search from "../components/Search";
@@ -13,8 +13,6 @@ export default function Departments() {
     "/api/departamentos",
     fetchData
   );
-
-  const handleSearch = () => {};
 
   return (
     <Layout>
@@ -34,7 +32,6 @@ export default function Departments() {
           <Search
             text="/api/departamentos"
             handleCopy={handleCopyUrlCompany}
-            handleSearch={handleSearch}
           />
         </div>
 

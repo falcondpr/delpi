@@ -1,7 +1,7 @@
 import ReactJson from "react-json-view";
 import useSWR from "swr";
 
-import {handleCopyUrlCompany} from "../utils/handleCapyUrlCompany.ts";
+import { handleCopyUrlCompany } from "../utils/handleCapyUrlCompany.ts";
 import Layout from "../components/Layout";
 import axios from "../config/axios";
 import Search from "../components/Search";
@@ -16,8 +16,6 @@ export default function Cities() {
     `/api/ciudades/${departmentId}`,
     departmentId ? fetchData : null
   );
-
-  const handleSearch = () => {};
 
   return (
     <Layout>
@@ -36,7 +34,6 @@ export default function Cities() {
 
           <Search
             handleCopy={handleCopyUrlCompany}
-            handleSearch={handleSearch}
             text="/api/ciudades/"
             placeholder="id"
             inputValue={departmentId}
