@@ -3,18 +3,16 @@ package main
 import (
 	"apiGo/api"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
-	"log"
 	"os"
 )
 
 func main() {
 	// ::: ENV
-	err := godotenv.Load()
-
-	if err != nil {
-		log.Fatal("Error al cargar el .env")
-	}
+	//err := godotenv.Load()
+	//
+	//if err != nil {
+	//	log.Fatal("Error al cargar el .env")
+	//}
 
 	gin.SetMode(os.Getenv("GIN_MODE"))
 

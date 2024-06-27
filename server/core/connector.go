@@ -2,19 +2,17 @@ package core
 
 import (
 	"fmt"
-	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
 	"os"
 )
 
 func ConnectToDb() *gorm.DB {
-	err := godotenv.Load()
-
-	if err != nil {
-		log.Fatal("Error al cargar el .env")
-	}
+	//err := godotenv.Load()
+	//
+	//if err != nil {
+	//	log.Fatal("Error al cargar el .env")
+	//}
 
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
