@@ -19,10 +19,8 @@ import {
   IDataDepartment,
   IDepartament,
 } from "../interface/department";
-import { ICity, ICityData } from "../interface/city";
-import {
-  INeighbourhood,
-  INeighbourhoodData,
+import { ICityData } from "../interface/city";
+import { INeighbourhoodData,
 } from "../interface/neighbourhood";
 
 const fetchData = async (url: string) => (await axios.get(url)).data;
@@ -44,12 +42,12 @@ const Demo: React.FC = () => {
     fetchData
   );
 
-  const { data: cities } = useSWR<ICity>(
+  const { data: cities } = useSWR<ICityData[]>(
     `/api/ciudades/${selectedDepartment?.id}`,
     selectedDepartment?.id ? fetchData : null
   );
 
-  const { data: neightbourhoods } = useSWR<INeighbourhood>(
+  const { data: neightbourhoods } = useSWR<INeighbourhoodData[]>(
     `/api/barrios/${selectedCity?.id}`,
     selectedCity?.id ? fetchData : null
   );
@@ -61,13 +59,13 @@ const Demo: React.FC = () => {
         ?.includes(queryDepartment?.toLowerCase())
   );
 
-  const citiesFiltered = cities?.data?.filter((department) =>
-    department?.nombre
+  const citiesFiltered = cities?.filter((city) =>
+    city?.nombre
       ?.toLowerCase()
       ?.includes(queryCity.toLowerCase())
   );
 
-  const neightbourhoodsFiltered = neightbourhoods?.data?.filter(
+  const neightbourhoodsFiltered = neightbourhoods?.filter(
     (nei) =>
       nei?.nombre?.toLowerCase()?.includes(queryCity.toLowerCase())
   );
