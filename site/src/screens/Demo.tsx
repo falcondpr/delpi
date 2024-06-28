@@ -20,8 +20,7 @@ import {
   IDepartament,
 } from "../interface/department";
 import { ICityData } from "../interface/city";
-import { INeighbourhoodData,
-} from "../interface/neighbourhood";
+import { INeighbourhoodData } from "../interface/neighbourhood";
 
 const fetchData = async (url: string) => (await axios.get(url)).data;
 
@@ -60,14 +59,11 @@ const Demo: React.FC = () => {
   );
 
   const citiesFiltered = cities?.filter((city) =>
-    city?.nombre
-      ?.toLowerCase()
-      ?.includes(queryCity.toLowerCase())
+    city?.nombre?.toLowerCase()?.includes(queryCity.toLowerCase())
   );
 
-  const neightbourhoodsFiltered = neightbourhoods?.filter(
-    (nei) =>
-      nei?.nombre?.toLowerCase()?.includes(queryCity.toLowerCase())
+  const neightbourhoodsFiltered = neightbourhoods?.filter((nei) =>
+    nei?.nombre?.toLowerCase()?.includes(queryCity.toLowerCase())
   );
 
   return (
@@ -209,9 +205,7 @@ const Demo: React.FC = () => {
               <div
                 className="relative"
                 style={
-                  !selectedDepartment
-                    ? { opacity: 0.5 }
-                    : { opacity: 1 }
+                  !selectedCity ? { opacity: 0.5 } : { opacity: 1 }
                 }
               >
                 <ComboboxInput
