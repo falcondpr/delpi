@@ -1,2 +1,1 @@
-export const ENDPOINT_API =
-  "https://delpigo-production.up.railway.app";
+export const ENDPOINT_API = "https://api.delpi.dev";
